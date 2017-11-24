@@ -14,5 +14,17 @@ CHIP DMux {
     OUT a, b;
 
     PARTS:
-    // Put your code here:
+    And(a=in, b=in, out=inisone);
+
+    And(a=sel, b=sel, out=selisone);
+    Not(in=sel, out=notsel);
+    And(a=notsel, b=notsel, out=seliszero);
+
+    // a is 0 unless seliszero and inisone.
+    // b is 0 unless selisone and inisone.
+    And(a=seliszero, b=inisone, out=a);
+    And(a=selisone, b=inisone, out=b);
+
+
+
 }
