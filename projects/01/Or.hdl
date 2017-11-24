@@ -14,5 +14,10 @@ CHIP Or {
     OUT out;
 
     PARTS:
-    // Put your code here:
+
+    // Check whether either equals 0
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    // That's a job for a Nand gate.
+    Nand(a=nota, b=notb, out=out);
 }

@@ -13,5 +13,21 @@ CHIP Xor {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // Need to return 1 iff a and b are either both one or both zero.
+
+    // if a and b are 1, get 1.
+    And(a=a, b=b, out=bothone);
+
+    // if a and b are 0, get 1.
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    And(a=nota, b=notb, out=bothzero);
+
+    // It's logically impossible for both of the prior statements to be true.
+    // That means we only need to worry about returning 0 if they both are false.
+    // We can do so by flipping the values and returning 0 for 1 1.
+    // It's another Nand gate!
+    Not(in=bothone, out=notbothone);
+    Not(in=bothzero, out=notbothzero);
+    And(a=notbothone, b=notbothzero, out=out);
 }

@@ -4,7 +4,7 @@
 // File name: projects/01/And.hdl
 
 /**
- * And gate: 
+ * And gate:
  * out = 1 if (a == 1 and b == 1)
  *       0 otherwise
  */
@@ -14,5 +14,12 @@ CHIP And {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // If both a and b are 1, the first Nand will output 0.
+    // Otherwise it will output 1.
+    // If both a and b were 1, then the output will be 0.
+    // The second Nand will reverse the first.
+    // Otherwise, the output would have been 1,
+    // and the second Nand will output 0.
+    Nand(a=a, b=b, out=nota);
+    Nand(a=nota, b=nota, out=out);
 }
